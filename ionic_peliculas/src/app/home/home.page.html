@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+        <ion-icon name="film"></ion-icon> Peliculas
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+      <ion-input [(ngModel)]="busqueda" placeholder="Buscar pelicula"><ion-icon name="search"></ion-icon></ion-input>
+    <ion-row>
+      <ion-col *ngFor="let pelicula of peliculas | async"  size-xs="12" size-sm="6" size-md="4">
+        <ion-card *ngIf="busqueda == null || pelicula.titulo.includes(busqueda)">
+            
+            <ion-item class="azul">
+            <a href="https://www.imdb.com/find?ref_=nv_sr_fn&q={{ pelicula.titulo }}&s=all" target="_blank" rel="noopener noreferrer">
+              <ion-avatar item-start>
+                <img class="avatar" [src]="pelicula.img">
+              </ion-avatar>
+            </a>
+            &nbsp;
+            <h5> {{ pelicula.titulo }}</h5>
+            
+          </ion-item>
+          <a href="https://www.imdb.com/find?ref_=nv_sr_fn&q={{ pelicula.titulo }}&s=all" target="_blank" rel="noopener noreferrer">
+            <img class="foto" [src]="pelicula.img">
+          </a>
+          <ion-card-content>
+              <ion-list>
+                  <ion-item >
+                    <ion-label>
+                      <ion-icon name="copy"></ion-icon>
+                     <b>Genero:</b> {{ pelicula.genero }}
+                    </ion-label>
+                  </ion-item >
+                  <ion-item >
+                      <ion-label>
+                        <ion-icon name="person"></ion-icon>
+                        <b>Director:</b> {{ pelicula.director }}
+                      </ion-label>
+                  </ion-item>
+                  <ion-item >
+                      <ion-label>
+                        <ion-icon name="calendar"></ion-icon>
+                        <b>Año:</b> {{ pelicula.year }}
+                      </ion-label>
+                  </ion-item>
+                  <ion-item >
+                      <ion-label>
+                        <ion-icon name="videocam"></ion-icon>
+                        <b>Productora:</b> {{ pelicula.productora }}
+                      </ion-label>
+                  </ion-item>
+                  <ion-item >
+                      <ion-label>
+                        <ion-icon name="cash"></ion-icon>
+                        <b>Presupuesto:</b> {{ pelicula.presupuesto }}
+                      </ion-label>
+                  </ion-item>
+                  <ion-item >
+                      <ion-label>
+                        <ion-icon name="time"></ion-icon>
+                        <b>Duración:</b> {{ pelicula.duracion }}
+                      </ion-label>
+                  </ion-item>
+              </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
